@@ -7,7 +7,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-900 text-white py-4 shadow-md flex justify-between items-center px-36">
-      <Link to="/nhanvien" className="text-xl font-bold hover:text-yellow-400">
+      <Link to="/quanly" className="text-xl font-bold hover:text-yellow-400">
         Tạp hoá
       </Link>
 

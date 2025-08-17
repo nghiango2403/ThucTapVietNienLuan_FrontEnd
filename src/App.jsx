@@ -3,6 +3,8 @@ import BoCucChinh from "./layouts/BoCucChinh";
 import Login from "./pages/chung/Login";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import QuanLyDashboard from "./pages/quanly/QuanLyDashboard";
+import Quanlynhanvien from "./pages/quanly/Quanlynhanvien";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +31,10 @@ const router = createBrowserRouter([
     path: "/quanly",
     element: <BoCucChinh />,
     children: [
-      { index: true, element: <div>Home</div> }, // index route
+      { index: true, element: <QuanLyDashboard/> }, // index route
       { path: "nhacungcap", element: <div>Nhà cung cấp</div> },
-      { path: "nhanvien", element: <div>Nhân viên</div> },
-      { path: "sach", element: <div>Sách</div> },
+      { path: "quanlynhanvien", element: <Quanlynhanvien/> },
+      { path: "quanlysanpham", element: <div>sản phẩm</div> },
       { path: "khuyenmai", element: <div>Khuyến mãi</div> },
       {
         path: "*",
