@@ -57,6 +57,17 @@ const suanhanvien = (
     }
   );
 };
+const mohoackhoatk = (MaTaiKhoan) => {
+  return api.put(
+    "/mohoackhoataikhoan",
+    {},
+    {
+      params: {
+        MaTaiKhoan,
+      },
+    }
+  );
+};
 
 const laythongtinnhanvien = (MaNhanVien) => {
   return api.get(`/laythongtinchitietcuanhanvien`, {
@@ -68,7 +79,18 @@ const laythongtinnhanvien = (MaNhanVien) => {
 const laychucvu = () => {
   return api.get("/laychucvu");
 };
-
+const doimatkhaunv = (MaTaiKhoan, MatKhau) => {
+  return api.put(
+    "/doimatkhaunhanvien",
+    {},
+    {
+      params: {
+        MaTaiKhoan,
+        MatKhau,
+      },
+    }
+  );
+};
 export {
   dangnhap,
   laydanhsachnhanvien,
@@ -76,4 +98,6 @@ export {
   laychucvu,
   suanhanvien,
   laythongtinnhanvien,
+  mohoackhoatk,
+  doimatkhaunv,
 };

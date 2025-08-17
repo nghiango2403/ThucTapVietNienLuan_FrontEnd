@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Themnhanvien from "../../components/Themnhanvien";
 import Suanhanvien from "../../components/Suanhanvien";
-import { laydanhsachnhanvien } from "../../services/Service";
+import { laydanhsachnhanvien, mohoackhoatk } from "../../services/Service";
 import { toast } from "react-toastify";
+import DoimatkhauNhanVien from "../../components/DoimatkhauNhanVien";
 
 const Quanlynhanvien = () => {
   const [search, setSearch] = useState("");
   const [dsnhanvien, setDsnhanvien] = useState([]);
   const [hienthigiaodienthem, setHienthigiaodienthem] = useState(false);
+  const [hienthigiaodiendoimk, setHienthigiaodiendoimk] = useState(false);
   const [hienthigiaodiensua, setHienthigiaodiensua] = useState(false);
   const [idsua, setidsua] = useState("");
 
@@ -21,6 +23,15 @@ const Quanlynhanvien = () => {
       toast.error(
         error.response.data.message || "Lấy danh sách nhân viên thất bại"
       );
+    }
+  };
+  const mokhoatk = async (id) => {
+    try {
+      await mohoackhoatk(id);
+      toast.success("Mở khoá tài khoản thành công");
+      fetchDsNhanVien(); // Cập nhật lại danh sách nhân viên
+    } catch (error) {
+      toast.error("Mở khoá tài khoản thất bại: " + error.message);
     }
   };
 
@@ -79,10 +90,18 @@ const Quanlynhanvien = () => {
 
       {hienthigiaodiensua && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
-          {/* Truyền prop onUpdate để re-fetch dữ liệu sau khi sửa */}
           <Suanhanvien
             MaNhanVien={idsua}
             onClose={() => setHienthigiaodiensua(false)}
+            onUpdate={fetchDsNhanVien}
+          />
+        </div>
+      )}
+      {hienthigiaodiendoimk && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
+          <DoimatkhauNhanVien
+            MaNhanVien={idsua}
+            onClose={() => setHienthigiaodiendoimk(false)}
             onUpdate={fetchDsNhanVien}
           />
         </div>
@@ -132,8 +151,20 @@ const Quanlynhanvien = () => {
                     >
                       Sửa
                     </button>
-                    <button className="ml-4 text-red-500 hover:text-red-700 font-medium">
-                      Xóa
+                    <button
+                      className="ml-4 text-green-500 hover:text-green-600 font-medium"
+                      onClick={() => {
+                        setidsua(emp._id);
+                        setHienthigiaodiendoimk(true);
+                      }}
+                    >
+                      Đổi mật khẩu
+                    </button>
+                    <button
+                      className="ml-4 text-red-500 hover:text-red-700 font-medium"
+                      onClick={() => mokhoatk(emp._id)}
+                    >
+                      {emp.KichHoat ? "Khoá" : "Mở"}
                     </button>
                   </td>
                 </tr>
