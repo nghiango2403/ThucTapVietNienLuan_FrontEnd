@@ -14,18 +14,17 @@ function QuanLyDashboard() {
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-indigo-100 text-indigor}-700 flex justify-center items-center group-hover:bg-indigo-200 transition`}
               >
-                {/* Placeholder icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-10 h-10"
+                  className="w-10 h-10"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14v7m0 0h3m-3 0H9m4-7a4 4 0 016 4v4H6v-4a4 4 0 016-4z"
                   />
                 </svg>
@@ -37,22 +36,22 @@ function QuanLyDashboard() {
               </h2>
             </div>
           </Link>
-          <Link to="/quanly/quanlysanpham"className="card group">
+          <Link to="/quanly/quanlysanpham" className="card group">
             <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-green-100 text-green-700 flex justify-center items-center group-hover:bg-green-200 transition`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-10 h-10"
+                  className="w-10 h-10"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M20 13V7a2 2 0 00-2-2H6a2 2 0 00-2 2v6m0 0v6a2 2 0 002 2h8a2 2 0 002-2v-6m-6 0h6"
                   />
                 </svg>
@@ -98,15 +97,15 @@ function QuanLyDashboard() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-10 h-10"
+                  className="w-10 h-10"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M8 7V3m8 4V3m-9 8h10l2 7H7l2-7zM12 11v6"
                   />
                 </svg>
@@ -123,7 +122,6 @@ function QuanLyDashboard() {
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-yellow-100 text-yellow-700 flex justify-center items-center group-hover:bg-yellow-200 transition`}
               >
-                {/* Placeholder icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -151,7 +149,6 @@ function QuanLyDashboard() {
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-red-100 text-red-700 flex justify-center items-center group-hover:bg-red-200 transition`}
               >
-                {/* Placeholder icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -179,7 +176,6 @@ function QuanLyDashboard() {
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-teal-100 text-teal-700 flex justify-center items-center group-hover:bg-teal-200 transition`}
               >
-                {/* Placeholder icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"

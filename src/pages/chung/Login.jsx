@@ -1,45 +1,69 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { dangnhap } from "../../services/Service";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Email:', email, 'Password:', password);
-    // Add your login logic here
+  const [tendangnhap, setTendangnhap] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    const dn = await dangnhap(tendangnhap, password);
+    if (dn.status === 200) {
+      localStorage.setItem("accessToken", dn.data.data.accessToken);
+      localStorage.setItem("refreshToken", dn.data.data.refreshToken);
+      if (dn.data.data.ThongTin.ChucVu == "Quản lý") {
+        navigate("/quanly");
+      } else {
+        navigate("/nhanvien");
+      }
+      toast.success("Đăng nhập thành công");
+    } else {
+      toast.error(dn.data.message || "Đăng nhập thất bại");
+    }
+    console.log("Đăng nhập:", dn);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="flex bg-white rounded-lg shadow-lg max-w-2xl w-full">
-        {/* Left Illustration */}
         <div className="hidden md:flex items-center justify-center w-1/2 bg-blue-100 rounded-l-lg overflow-hidden">
-          <img src="/public/Screenshot 2025-08-17 131518.png" alt="Illustration" className="w-full h-full object-cover"/>
-            </div>
+          <img
+            src="/public/Screenshot 2025-08-17 131518.png"
+            alt="Illustration"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        {/* Right Form Section */}
         <div className="w-full p-8">
-          <h2 className="text-3xl font-bold text-center mb-4 text-red-600">Tạp hóa</h2>
-          
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <h2 className="text-3xl font-bold text-center mb-4 text-red-600">
+            Tạp hóa
+          </h2>
+
+          <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="tendangnhap"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Tên đăng nhập
               </label>
               <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                id="tendangnhap"
+                value={tendangnhap}
+                onChange={(e) => setTendangnhap(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Nhập email của bạn"
                 required
               />
             </div>
-            
+
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Mật khẩu
               </label>
               <input
@@ -52,17 +76,23 @@ const Login = () => {
                 required
               />
             </div>
-            
+
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+              onClick={handleSubmit}
             >
               Đăng nhập
             </button>
-          </form>
+          </div>
 
           <div className="mt-4 text-center text-sm text-gray-600">
-            <p>Chưa có tài khoản? <a href="#" className="text-blue-600 hover:underline">Đăng ký ngay</a></p>
+            <p>
+              Chưa có tài khoản?{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Đăng ký ngay
+              </a>
+            </p>
           </div>
         </div>
       </div>
