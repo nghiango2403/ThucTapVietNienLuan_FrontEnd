@@ -91,6 +91,31 @@ const doimatkhaunv = (MaTaiKhoan, MatKhau) => {
     }
   );
 };
+const laymakhuyenmaiconhoatdong = () => {
+  return api.get("/laykhuyenmaiconhoatdong");
+};
+const laykhuyenmaibangid = (MaKhuyenMai) => {
+  return api.get("/laykhuyenmaibangid?MaKhuyenMai=" + MaKhuyenMai);
+};
+const timhanghoa = (Ten) => {
+  return api.get("/timhanghoa?Ten=" + Ten);
+};
+const themhoadon = (data) => {
+  return api.post("/themhoadon", data);
+};
+const layhoadon = (trang, thang, nam) => {
+  return api.get(
+    `/xemdanhsachhoadon?Trang=${trang}&Dong=10&Thang=${thang}&Nam=${nam}`
+  );
+};
+const xoahoadon = (MaHoaDon) => {
+  return api.delete(`/xoahoadon`, {
+    data: { MaHoaDon },
+  });
+};
+const laychitiethoadon = (MaHoaDon) => {
+  return api.get(`/xemchitiethoadon?MaHoaDon=` + MaHoaDon);
+};
 export {
   dangnhap,
   laydanhsachnhanvien,
@@ -100,4 +125,11 @@ export {
   laythongtinnhanvien,
   mohoackhoatk,
   doimatkhaunv,
+  laymakhuyenmaiconhoatdong,
+  timhanghoa,
+  themhoadon,
+  layhoadon,
+  laychitiethoadon,
+  laykhuyenmaibangid,
+  xoahoadon,
 };
