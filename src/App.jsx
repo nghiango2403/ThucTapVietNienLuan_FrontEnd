@@ -7,6 +7,7 @@ import QuanLyDashboard from "./pages/quanly/QuanLyDashboard";
 import Quanlynhanvien from "./pages/quanly/Quanlynhanvien";
 import QuanLyHoaDon from "./pages/quanly/QuanLyHoaDon";
 import ThemHoaDon from "./pages/quanly/ThemHoaDon";
+import ThongKe from "./pages/quanly/ThongKe";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       { path: "khuyenmai", element: <div>Khuyến mãi</div> },
       { path: "quanlyhoadon", element: <QuanLyHoaDon /> },
       { path: "themhoadon", element: <ThemHoaDon /> },
+      { path: "thongke", element: <ThongKe /> },
       {
         path: "*",
         element: <div>404 Not Found</div>,

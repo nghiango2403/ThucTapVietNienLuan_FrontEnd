@@ -127,6 +127,20 @@ const kiemtratrangthaithanhtoan = (MaHoaDon) => {
 const taolaithanhtoan = (MaHoaDon) => {
   return api.post(`/taolaithanhtoan`, { MaHoaDon });
 };
+const thongkenhaphang = (thang, nam) => {
+  return api.get(`/thongkenhaphang?thang=${thang}&nam=${nam}`);
+};
+const thongkebanhang = (thang, nam) => {
+  return api.get(`/thongkebanhang?thang=${thang}&nam=${nam}`);
+};
+const thongketonkho = () => {
+  return api.get("/thongketonkho");
+};
+const thongkedoanhthu = (ngaybatdau, ngayketthuc) => {
+  return api.get(
+    `/thongkedoanhthu?ngaybatdau=${ngaybatdau}&ngayketthuc=${ngayketthuc}`
+  );
+};
 export {
   dangnhap,
   laydanhsachnhanvien,
@@ -146,4 +160,8 @@ export {
   kiemtratrangthaithanhtoan,
   taolaithanhtoan,
   layhoadoncuanhanvien,
+  thongkenhaphang,
+  thongkebanhang,
+  thongketonkho,
+  thongkedoanhthu,
 };

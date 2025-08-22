@@ -142,7 +142,7 @@ function QuanLyDashboard() {
             </div>
           </Link>
 
-          <a href="#" className="card group">
+          <Link to="/quanly/thongke" className="card group">
             <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-teal-100 text-teal-700 flex justify-center items-center group-hover:bg-teal-200 transition`}
@@ -165,10 +165,10 @@ function QuanLyDashboard() {
               <h2
                 className={`text-lg font-semibold text-gray-800 group-hover:text-teal-700 transition`}
               >
-                Báo cáo
+                Thống kê
               </h2>
             </div>
-          </a>
+          </Link>
         </section>
       </main>
     </div>
