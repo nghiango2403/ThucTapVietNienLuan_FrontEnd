@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { laychitiethoadon, laykhuyenmaibangid } from "../services/Service";
+import {
+  kiemtratrangthaithanhtoan,
+  laychitiethoadon,
+  laykhuyenmaibangid,
+  taolaithanhtoan,
+} from "../services/Service";
 
 const XemHoaDon = ({ hoadon, dong }) => {
   const [ChiTietHD, setChiTietHD] = useState([]);
   const [khuyenmai, setKhuyenmai] = useState({});
+  const [trangthaithanhtoan, settrangthaithanhtoan] = useState("");
   useEffect(() => {
     const layChiTietHoaDon = async () => {
       try {
         const response = await laychitiethoadon(hoadon._id);
+        console.log(hoadon);
+        if (hoadon.HinhThucThanhToan != "Trực tiếp") {
+          const a = await kiemtratrangthaithanhtoan(hoadon._id);
+          settrangthaithanhtoan(a.data.data);
+        }
         setChiTietHD(response.data.data);
       } catch (e) {
         console.log(e);
@@ -27,6 +38,16 @@ const XemHoaDon = ({ hoadon, dong }) => {
       layKhuyenMaiBangId();
     }
   }, []);
+  const taoLaiThanhToan = async () => {
+    try {
+      const response = await taolaithanhtoan(hoadon._id);
+      if (response.data.status == 201) {
+        window.open(response.data.data.url);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const { MaKhuyenMai, HinhThucThanhToan } = hoadon;
 
@@ -85,6 +106,22 @@ const XemHoaDon = ({ hoadon, dong }) => {
             </tbody>
           </table>
         </div>
+        {trangthaithanhtoan == "" ? (
+          ""
+        ) : (
+          <div className="mt-4 text-lg font-bold text-green-600">
+            Trạng thái thanh toán:{" "}
+            <span className="text-red-600">{trangthaithanhtoan}</span>
+            {trangthaithanhtoan == "Thất bại" && (
+              <button
+                onClick={taoLaiThanhToan}
+                className="px-6 py-2 rounded-xl border ml-4 border-gray-300 bg-green-400 text-white hover:bg-green-500"
+              >
+                Tạo lại
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Tổng tiền */}
         <div className="text-right mt-4 text-lg font-bold text-green-600">
@@ -99,7 +136,6 @@ const XemHoaDon = ({ hoadon, dong }) => {
           đ
         </div>
 
-        {/* Footer */}
         <div className="flex justify-end mt-6">
           <button
             onClick={dong}

@@ -108,6 +108,11 @@ const layhoadon = (trang, thang, nam) => {
     `/xemdanhsachhoadon?Trang=${trang}&Dong=10&Thang=${thang}&Nam=${nam}`
   );
 };
+const layhoadoncuanhanvien = (trang, thang, nam) => {
+  return api.get(
+    `/xemdanhsachhoadoncuanhanvien?Trang=${trang}&Dong=10&Thang=${thang}&Nam=${nam}`
+  );
+};
 const xoahoadon = (MaHoaDon) => {
   return api.delete(`/xoahoadon`, {
     data: { MaHoaDon },
@@ -115,6 +120,12 @@ const xoahoadon = (MaHoaDon) => {
 };
 const laychitiethoadon = (MaHoaDon) => {
   return api.get(`/xemchitiethoadon?MaHoaDon=` + MaHoaDon);
+};
+const kiemtratrangthaithanhtoan = (MaHoaDon) => {
+  return api.get(`/kiemtratrangthaithanhtoan?MaHoaDon=` + MaHoaDon);
+};
+const taolaithanhtoan = (MaHoaDon) => {
+  return api.post(`/taolaithanhtoan`, { MaHoaDon });
 };
 export {
   dangnhap,
@@ -132,4 +143,7 @@ export {
   laychitiethoadon,
   laykhuyenmaibangid,
   xoahoadon,
+  kiemtratrangthaithanhtoan,
+  taolaithanhtoan,
+  layhoadoncuanhanvien,
 };

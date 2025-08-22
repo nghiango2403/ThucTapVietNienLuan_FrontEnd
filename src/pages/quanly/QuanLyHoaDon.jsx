@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { layhoadon, xoahoadon } from "../../services/Service";
+import {
+  layhoadon,
+  layhoadoncuanhanvien,
+  xoahoadon,
+} from "../../services/Service";
 import XemHoaDon from "../../components/XemHoaDon";
 
 const QuanLyHoaDon = () => {
+  const location = useLocation();
   const [dsHoaDon, setDsHoaDon] = useState([]);
   const [soTrang, setSoTrang] = useState(1);
   const [trangHienTai, setTrangHienTai] = useState(0); // react-paginate tính từ 0
   const [thang, setThang] = useState(() => new Date().getMonth() + 1);
   const [nam, setNam] = useState(new Date().getFullYear());
   const [hienXem, setHienXem] = useState(false);
+
   const [hoadonchon, setHoadonchon] = useState({});
 
   useEffect(() => {
@@ -19,9 +25,19 @@ const QuanLyHoaDon = () => {
   }, [trangHienTai]);
   const layHoaDon = async () => {
     try {
-      const response = await layhoadon(trangHienTai + 1, thang, nam);
-      setDsHoaDon(response.data.data.danhsach);
-      setSoTrang(response.data.data.soTrang);
+      if (location.pathname === "/nhanvien") {
+        const response = await layhoadoncuanhanvien(
+          trangHienTai + 1,
+          thang,
+          nam
+        );
+        setDsHoaDon(response.data.data.danhsach);
+        setSoTrang(response.data.data.soTrang);
+      } else {
+        const response = await layhoadon(trangHienTai + 1, thang, nam);
+        setDsHoaDon(response.data.data.danhsach);
+        setSoTrang(response.data.data.soTrang);
+      }
     } catch (error) {
       console.log(error);
       toast.error("Lấy hoá đơn thất bại");
@@ -89,9 +105,14 @@ const QuanLyHoaDon = () => {
               <th className="px-4 py-3 text-sm font-semibold text-gray-600">
                 STT
               </th>
-              <th className="px-4 py-3 text-sm font-semibold text-gray-600">
-                Nhân viên lập
-              </th>
+              {location.pathname === "/nhanvien" ? (
+                ""
+              ) : (
+                <th className="px-4 py-3 text-sm font-semibold text-gray-600">
+                  Nhân viên lập
+                </th>
+              )}
+
               <th className="px-4 py-3 text-sm font-semibold text-gray-600">
                 Ngày lập
               </th>
@@ -116,9 +137,14 @@ const QuanLyHoaDon = () => {
                   <td className="px-4 py-3 text-gray-700">
                     {index + 1 + trangHienTai * 10}
                   </td>
-                  <td className="px-4 py-3 text-blue-600 hover:underline cursor-pointer">
-                    {hd.MaNhanVien.HoTen}
-                  </td>
+                  {location.pathname === "/nhanvien" ? (
+                    ""
+                  ) : (
+                    <td className="px-4 py-3 text-blue-600 hover:underline cursor-pointer">
+                      {hd.MaNhanVien.HoTen}
+                    </td>
+                  )}
+
                   <td className="px-4 py-3 text-gray-700">
                     {new Date(hd.NgayLap).toLocaleString("vi-VN")}
                   </td>
@@ -137,9 +163,6 @@ const QuanLyHoaDon = () => {
                       }}
                     >
                       Xem
-                    </button>
-                    <button className="text-green-600 hover:underline">
-                      Sửa
                     </button>
                     <button
                       className="text-red-600 hover:underline"
@@ -164,7 +187,6 @@ const QuanLyHoaDon = () => {
         )}
       </div>
 
-      {/* Pagination */}
       <div className="flex justify-center mt-6">
         <ReactPaginate
           previousLabel={"← Trước"}

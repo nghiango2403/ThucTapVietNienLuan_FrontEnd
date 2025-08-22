@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function QuanLyDashboard() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <div className="bg-gradient-to-tr from-blue-50 via-white to-purple-50 min-h-screen flex flex-col">
       {/* Main content */}
@@ -144,33 +141,7 @@ function QuanLyDashboard() {
               </h2>
             </div>
           </Link>
-          <a href="#" className="card group">
-            <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
-              <div
-                className={`w-16 h-16 mb-4 rounded-full bg-red-100 text-red-700 flex justify-center items-center group-hover:bg-red-200 transition`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5.121 17.804A4.002 4.002 0 015 14V9a4 4 0 118 0v5a4.002 4.002 0 01-.121 3.804M15 19h6M3 19h6"
-                  />
-                </svg>
-              </div>
-              <h2
-                className={`text-lg font-semibold text-gray-800 group-hover:text-red-700 transition`}
-              >
-                Thanh toán
-              </h2>
-            </div>
-          </a>
+
           <a href="#" className="card group">
             <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
               <div
@@ -194,66 +165,12 @@ function QuanLyDashboard() {
               <h2
                 className={`text-lg font-semibold text-gray-800 group-hover:text-teal-700 transition`}
               >
-                Hoá đơn
+                Báo cáo
               </h2>
             </div>
           </a>
         </section>
       </main>
-
-      {/* Login Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-            <h2 className="text-2xl font-bold mb-4 text-center">Đăng Nhập</h2>
-            <form>
-              <div className="mb-4">
-                <label htmlFor="username" className="block text-gray-700">
-                  Tên đăng nhập
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Nhập tên đăng nhập"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="password" className="block text-gray-700">
-                  Mật khẩu
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                  placeholder="Nhập mật khẩu"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 transition"
-              >
-                Đăng Nhập
-              </button>
-            </form>
-            <button
-              className="mt-4 text-gray-500 hover:text-gray-700"
-              onClick={() => setIsModalOpen(false)}
-            >
-              Đóng
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Footer */}
-      <footer className="bg-white shadow-inner mt-auto py-6">
-        <div className="container mx-auto px-6 text-center text-gray-600 text-sm select-none">
-          © 2024 Fahasa.com - Trang Quản Lý Được Tạo Bởi Chuyên Gia HTML & CSS
-        </div>
-      </footer>
     </div>
   );
 }

@@ -9,6 +9,7 @@ const ThemHoaDon = () => {
   const [hinhThucThanhToan, setHinhThucThanhToan] = useState("Trực tiếp");
   const [chiTietHD, setChiTietHD] = useState([]);
   const [danhSachKhuyenMai, setDanhSachKhuyenMai] = useState([]);
+  const [danggui, setDanggui] = useState(false);
 
   useEffect(() => {
     const laykhuyenmai = async () => {
@@ -74,9 +75,15 @@ const ThemHoaDon = () => {
     }
     console.log("Hóa đơn gửi đi:", data);
     try {
+      setDanggui(true);
       const response = await themhoadon(data);
       toast.success(response.data.message);
+      setDanggui(false);
+      if (response.data.status == 201) {
+        window.open(response.data.data.url);
+      }
     } catch (error) {
+      setDanggui(false);
       toast.error("Thêm hóa đơn thất bại: ");
       console.log(error);
     }
@@ -84,7 +91,6 @@ const ThemHoaDon = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen flex flex-col items-center">
-      {/* Tiêu đề */}
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Thêm hoá đơn</h1>
 
       {/* Form */}
@@ -122,7 +128,7 @@ const ThemHoaDon = () => {
           >
             <option value="Trực tiếp">Trực tiếp</option>
             <option value="MoMo">MoMo</option>
-            <option value="ZaLoPay">ZaLoPay</option>
+            <option value="ZaloPay">ZaLoPay</option>
             <option value="VnPay">VNPay</option>
           </select>
         </div>
@@ -229,6 +235,7 @@ const ThemHoaDon = () => {
           </button>
           <button
             type="button"
+            disabled={danggui}
             onClick={handleSubmit}
             className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl shadow"
           >

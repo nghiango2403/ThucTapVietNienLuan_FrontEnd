@@ -17,12 +17,7 @@ const router = createBrowserRouter([
     path: "/nhanvien",
     element: <BoCucChinh />,
     children: [
-      { index: true, element: <div>Home</div> }, // index route
-      { path: "nhacungcap", element: <div>Nhà cung cấp</div> },
-      { path: "nhanvien", element: <div>Nhân viên</div> },
-      { path: "sach", element: <div>Sách</div> },
-      { path: "khuyenmai", element: <div>Khuyến mãi</div> },
-      { path: "hoadon", element: <div>Hoá đơn</div> },
+      { index: true, element: <QuanLyHoaDon /> },
       {
         path: "*",
         element: <div>404 Not Found</div>,
