@@ -3,12 +3,12 @@ import { thongkedoanhthu } from "../services/Service";
 
 const ThongKeDoanhThu = () => {
   const [data, setData] = useState([]);
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+  const [ngaybatdau, setNgaybatdau] = useState("");
+  const [ngayketthuc, setNgayketthuc] = useState("");
 
-  const fetchData = async (from, to) => {
+  const fetchData = async (tungay, to) => {
     try {
-      const response = await thongkedoanhthu(from, to);
+      const response = await thongkedoanhthu(tungay, to);
       setData(response.data.data);
     } catch (error) {
       console.log(error);
@@ -20,25 +20,27 @@ const ThongKeDoanhThu = () => {
   }, []);
 
   const handleFilter = () => {
-    if (fromDate && toDate && new Date(toDate) < new Date(fromDate)) {
+    if (
+      ngaybatdau &&
+      ngayketthuc &&
+      new Date(ngayketthuc) < new Date(ngaybatdau)
+    ) {
       alert("Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu");
       return;
     }
-    fetchData(fromDate, toDate);
+    fetchData(ngaybatdau, ngayketthuc);
   };
 
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Thống kê tồn kho</h2>
-
-      {/* Bộ lọc ngày */}
       <div className="flex flex-wrap items-end gap-4 mb-4">
         <div className="flex flex-col">
           <label className="text-sm font-medium mb-1">Từ ngày</label>
           <input
             type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
+            value={ngaybatdau}
+            onChange={(e) => setNgaybatdau(e.target.value)}
             className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
@@ -47,8 +49,8 @@ const ThongKeDoanhThu = () => {
           <label className="text-sm font-medium mb-1">Đến ngày</label>
           <input
             type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
+            value={ngayketthuc}
+            onChange={(e) => setNgayketthuc(e.target.value)}
             className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
@@ -61,7 +63,6 @@ const ThongKeDoanhThu = () => {
         </button>
       </div>
 
-      {/* Bảng thống kê */}
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow">
         <thead className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
           <tr>

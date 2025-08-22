@@ -3,8 +3,8 @@ import { thongkebanhang } from "../services/Service";
 
 const ThongKeBanHang = () => {
   const [data, setData] = useState([]);
-  const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [thang, setThang] = useState(new Date().getMonth() + 1);
+  const [nam, setNam] = useState(new Date().getFullYear());
 
   const LayThongKeBanHang = async (m, y) => {
     try {
@@ -16,25 +16,24 @@ const ThongKeBanHang = () => {
   };
 
   useEffect(() => {
-    LayThongKeBanHang(month, year);
+    LayThongKeBanHang(thang, nam);
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    LayThongKeBanHang(month, year);
+    LayThongKeBanHang(thang, nam);
   };
 
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Thống kê bán hàng</h2>
 
-      {/* Form chọn tháng và năm */}
       <form onSubmit={handleSubmit} className="flex items-center gap-4 mb-6">
         <div>
           <label className="mr-2">Tháng:</label>
           <select
-            value={month}
-            onChange={(e) => setMonth(Number(e.target.value))}
+            value={thang}
+            onChange={(e) => setThang(Number(e.target.value))}
             className="border rounded px-2 py-1"
           >
             {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
@@ -49,8 +48,8 @@ const ThongKeBanHang = () => {
           <label className="mr-2">Năm:</label>
           <input
             type="number"
-            value={year}
-            onChange={(e) => setYear(Number(e.target.value))}
+            value={nam}
+            onChange={(e) => setNam(Number(e.target.value))}
             className="border rounded px-2 py-1 w-24"
           />
         </div>
@@ -63,7 +62,6 @@ const ThongKeBanHang = () => {
         </button>
       </form>
 
-      {/* Bảng thống kê */}
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow">
         <thead className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
           <tr>

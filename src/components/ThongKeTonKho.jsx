@@ -4,7 +4,7 @@ import { thongketonkho } from "../services/Service";
 const ThongKeTonKho = () => {
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
+  const laydata = async () => {
     try {
       const response = await thongketonkho();
       setData(response.data.data);
@@ -14,7 +14,7 @@ const ThongKeTonKho = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    laydata();
   }, []);
 
   return (
