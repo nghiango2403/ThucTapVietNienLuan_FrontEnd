@@ -188,6 +188,25 @@ const suakhuyenmai = ({
     `/capnhatkhuyenmai?MaKhuyenMai=${MaKhuyenMai}&TenKhuyenMai=${TenKhuyenMai}&NgayBatDau=${NgayBatDau}&NgayKetThuc=${NgayKetThuc}&TienKhuyenMai=${TienKhuyenMai}&DieuKien=${DieuKien}`
   );
 };
+const doimatkhau = (MatKhauCu, MatKhauMoi) => {
+  return api.post("/doimatkhau", { MatKhauCu, MatKhauMoi });
+};
+const laythongtintaikhoan = () => {
+  return api.get("/laythongtintaikhoan");
+};
+const doithongtintaikhoan = ({
+  HoTen,
+  SDT,
+  Email,
+  NgaySinh,
+  DiaChi,
+  GioiTinh,
+  MaChucVu,
+}) => {
+  return api.put(
+    `/doithongtintaikhoan?HoTen=${HoTen}&SDT=${SDT}&Email=${Email}&NgaySinh=${NgaySinh}&DiaChi=${DiaChi}&GioiTinh=${GioiTinh}&MaChucVu=${MaChucVu}`
+  );
+};
 export {
   dangnhap,
   laydanhsachnhanvien,
@@ -218,4 +237,7 @@ export {
   laykhuyenmai,
   themkhuyenmai,
   suakhuyenmai,
+  doimatkhau,
+  laythongtintaikhoan,
+  doithongtintaikhoan,
 };

@@ -38,11 +38,9 @@ api.interceptors.response.use(
           }
         );
 
-        const { accessToken: newAccessToken } = res.data;
+        localStorage.setItem("accessToken", res.data.data.accessToken);
 
-        localStorage.setItem("accessToken", newAccessToken);
-
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${res.data.data.accessToken}`;
 
         return api(originalRequest);
       } catch (err) {

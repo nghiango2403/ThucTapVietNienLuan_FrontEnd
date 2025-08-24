@@ -7,7 +7,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-900 text-white py-4 shadow-md flex justify-between items-center px-36">
-      <Link to="/quanly" className="text-xl font-bold hover:text-yellow-400">
+      <Link to="/" className="text-xl font-bold hover:text-yellow-400">
         Tạp hoá
       </Link>
 
@@ -35,12 +35,29 @@ export default function Navbar() {
         {dropdownOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white text-gray-900 rounded shadow-lg z-50">
             <Link
-              to="/dangnhap"
+              to={
+                localStorage.getItem("ChucVu") === "Quản lý"
+                  ? "/quanly/suathongtintaikhoan"
+                  : "/nhanvien/suathongtintaikhoan"
+              }
               className="block px-4 py-2 hover:bg-gray-200"
               onClick={() => setDropdownOpen(false)}
             >
-              Login
+              Sữa thông tin
             </Link>
+
+            <Link
+              to={
+                localStorage.getItem("ChucVu") == "Quản lý"
+                  ? "/quanly/doimatkhau"
+                  : "/nhanvien/doimatkhau"
+              }
+              className="block px-4 py-2 hover:bg-gray-200"
+              onClick={() => setDropdownOpen(false)}
+            >
+              Đổi mật khẩu
+            </Link>
+
             <Link
               to="/dangnhap"
               className="block px-4 py-2 hover:bg-gray-200"

@@ -12,6 +12,9 @@ import QuanLyNhapHang from "./pages/quanly/QuanLyNhapHang";
 import ThemPhieuNhapHang from "./pages/quanly/ThemPhieuNhapHang";
 import QuanLyKhuyenMai from "./pages/quanly/QuanLyKhuyenMai";
 import ThemKhuyenMai from "./components/ThemKhuyenMai";
+import DoiMatKhau from "./pages/chung/DoiMatKhau";
+import SuaThongTinTaiKhoan from "./pages/chung/SuaThongTinTaiKhoan";
+import ChuyenHuong from "./pages/chung/ChuyenHuong";
 
 const router = createBrowserRouter([
   {
@@ -19,10 +22,16 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/",
+    element: <ChuyenHuong />,
+  },
+  {
     path: "/nhanvien",
     element: <BoCucChinh />,
     children: [
       { index: true, element: <QuanLyHoaDon /> },
+      { path: "doimatkhau", element: <DoiMatKhau /> },
+      { path: "suathongtintaikhoan", element: <SuaThongTinTaiKhoan /> },
       {
         path: "*",
         element: <div>404 Not Found</div>,
@@ -36,7 +45,8 @@ const router = createBrowserRouter([
       { index: true, element: <QuanLyDashboard /> },
       { path: "quanlynhanvien", element: <Quanlynhanvien /> },
       { path: "quanlysanpham", element: <div>sản phẩm</div> },
-      { path: "khuyenmai", element: <div>Khuyến mãi</div> },
+      { path: "doimatkhau", element: <DoiMatKhau /> },
+      { path: "suathongtintaikhoan", element: <SuaThongTinTaiKhoan /> },
       { path: "quanlyhoadon", element: <QuanLyHoaDon /> },
       { path: "themhoadon", element: <ThemHoaDon /> },
       { path: "thongke", element: <ThongKe /> },
