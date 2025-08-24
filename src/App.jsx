@@ -15,6 +15,8 @@ import ThemKhuyenMai from "./components/ThemKhuyenMai";
 import DoiMatKhau from "./pages/chung/DoiMatKhau";
 import SuaThongTinTaiKhoan from "./pages/chung/SuaThongTinTaiKhoan";
 import ChuyenHuong from "./pages/chung/ChuyenHuong";
+import ThemHangHoa from "./components/ThemHangHoa";
+import QuanLyHangHoa from "./pages/quanly/QuanLyHangHoa";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +46,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <QuanLyDashboard /> },
       { path: "quanlynhanvien", element: <Quanlynhanvien /> },
-      { path: "quanlysanpham", element: <div>sản phẩm</div> },
+      { path: "quanlysanpham", element: <QuanLyHangHoa /> },
       { path: "doimatkhau", element: <DoiMatKhau /> },
       { path: "suathongtintaikhoan", element: <SuaThongTinTaiKhoan /> },
       { path: "quanlyhoadon", element: <QuanLyHoaDon /> },
@@ -54,6 +56,7 @@ const router = createBrowserRouter([
       { path: "themphieunhaphang", element: <ThemPhieuNhapHang /> },
       { path: "quanlykhuyenmai", element: <QuanLyKhuyenMai /> },
       { path: "themkhuyenmai", element: <ThemKhuyenMai /> },
+      { path: "themhanghoa", element: <ThemHangHoa /> },
 
       {
         path: "*",

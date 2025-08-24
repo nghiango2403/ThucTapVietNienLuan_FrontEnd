@@ -1,4 +1,3 @@
-// Thêm dòng import này
 import { Link } from "react-router-dom";
 import { useState } from "react";
 

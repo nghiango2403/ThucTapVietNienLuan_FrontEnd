@@ -207,6 +207,17 @@ const doithongtintaikhoan = ({
     `/doithongtintaikhoan?HoTen=${HoTen}&SDT=${SDT}&Email=${Email}&NgaySinh=${NgaySinh}&DiaChi=${DiaChi}&GioiTinh=${GioiTinh}&MaChucVu=${MaChucVu}`
   );
 };
+const themhanghoa = async (data) => {
+  return api.post("/themhanghoa", data);
+};
+const suahanghoa = async ({ MaHangHoa, Ten, Gia }) => {
+  return api.put(
+    "/capnhathanghoa?MaHangHoa=" + MaHangHoa + "&Ten=" + Ten + "&Gia=" + Gia
+  );
+};
+const layhanghoa = (Ten) => {
+  return api.get("/timhanghoa?Ten=" + Ten);
+};
 export {
   dangnhap,
   laydanhsachnhanvien,
@@ -240,4 +251,7 @@ export {
   doimatkhau,
   laythongtintaikhoan,
   doithongtintaikhoan,
+  themhanghoa,
+  suahanghoa,
+  layhanghoa,
 };
