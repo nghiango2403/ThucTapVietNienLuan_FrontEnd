@@ -60,7 +60,7 @@ function QuanLyDashboard() {
               </h2>
             </div>
           </Link>
-          <a href="#" className="card group">
+          <Link to="/quanly/quanlynhaphang" className="card group">
             <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-blue-100 text-blue-700 flex justify-center items-center group-hover:bg-blue-200 transition`}
@@ -86,8 +86,8 @@ function QuanLyDashboard() {
                 Nhập hàng
               </h2>
             </div>
-          </a>
-          <a href="#" className="card group">
+          </Link>
+          <Link to="/quanly/quanlykhuyenmai" className="card group">
             <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
               <div
                 className={`w-16 h-16 mb-4 rounded-full bg-pink-100 text-pink-700 flex justify-center items-center group-hover:bg-pink-200 transition`}
@@ -113,7 +113,7 @@ function QuanLyDashboard() {
                 Khuyến mãi
               </h2>
             </div>
-          </a>
+          </Link>
           <Link to="quanlyhoadon" className="card group">
             <div className="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-xl flex flex-col justify-center items-center">
               <div

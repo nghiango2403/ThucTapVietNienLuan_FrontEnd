@@ -141,6 +141,53 @@ const thongkedoanhthu = (ngaybatdau, ngayketthuc) => {
     `/thongkedoanhthu?ngaybatdau=${ngaybatdau}&ngayketthuc=${ngayketthuc}`
   );
 };
+const themphieunhaphang = (data) => {
+  return api.post("/taophieunhaphang", data);
+};
+
+const layphieunhaphang = (Trang, Thang, Nam) => {
+  return api.get(
+    `/layphieunhaphang?Trang=${Trang}&Dong=10&Thang=${Thang}&Nam=${Nam}`
+  );
+};
+const laychitietphieunhaphang = (MaPhieuNhapHang) => {
+  return api.get(`/laychitietphieunhaphang?MaPhieuNhapHang=${MaPhieuNhapHang}`);
+};
+const xoaphieunhaphang = (MaPhieuNhapHang) => {
+  return api.delete(`/xoaphieunhaphang`, {
+    data: { MaPhieuNhapHang },
+  });
+};
+const laykhuyenmai = (Trang) => {
+  return api.get(`/laykhuyenmai?Trang=${Trang}&Dong=10`);
+};
+const themkhuyenmai = ({
+  TenKhuyenMai,
+  NgayBatDau,
+  NgayKetThuc,
+  TienKhuyenMai,
+  DieuKien,
+}) => {
+  return api.post(`/themkhuyenmai`, {
+    TenKhuyenMai,
+    NgayBatDau,
+    NgayKetThuc,
+    TienKhuyenMai,
+    DieuKien,
+  });
+};
+const suakhuyenmai = ({
+  MaKhuyenMai,
+  TenKhuyenMai,
+  NgayBatDau,
+  NgayKetThuc,
+  TienKhuyenMai,
+  DieuKien,
+}) => {
+  return api.put(
+    `/capnhatkhuyenmai?MaKhuyenMai=${MaKhuyenMai}&TenKhuyenMai=${TenKhuyenMai}&NgayBatDau=${NgayBatDau}&NgayKetThuc=${NgayKetThuc}&TienKhuyenMai=${TienKhuyenMai}&DieuKien=${DieuKien}`
+  );
+};
 export {
   dangnhap,
   laydanhsachnhanvien,
@@ -164,4 +211,11 @@ export {
   thongkebanhang,
   thongketonkho,
   thongkedoanhthu,
+  themphieunhaphang,
+  layphieunhaphang,
+  laychitietphieunhaphang,
+  xoaphieunhaphang,
+  laykhuyenmai,
+  themkhuyenmai,
+  suakhuyenmai,
 };

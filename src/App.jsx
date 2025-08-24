@@ -8,6 +8,10 @@ import Quanlynhanvien from "./pages/quanly/Quanlynhanvien";
 import QuanLyHoaDon from "./pages/quanly/QuanLyHoaDon";
 import ThemHoaDon from "./pages/quanly/ThemHoaDon";
 import ThongKe from "./pages/quanly/ThongKe";
+import QuanLyNhapHang from "./pages/quanly/QuanLyNhapHang";
+import ThemPhieuNhapHang from "./pages/quanly/ThemPhieuNhapHang";
+import QuanLyKhuyenMai from "./pages/quanly/QuanLyKhuyenMai";
+import ThemKhuyenMai from "./components/ThemKhuyenMai";
 
 const router = createBrowserRouter([
   {
@@ -29,14 +33,18 @@ const router = createBrowserRouter([
     path: "/quanly",
     element: <BoCucChinh />,
     children: [
-      { index: true, element: <QuanLyDashboard /> }, // index route
-      { path: "nhacungcap", element: <div>Nhà cung cấp</div> },
+      { index: true, element: <QuanLyDashboard /> },
       { path: "quanlynhanvien", element: <Quanlynhanvien /> },
       { path: "quanlysanpham", element: <div>sản phẩm</div> },
       { path: "khuyenmai", element: <div>Khuyến mãi</div> },
       { path: "quanlyhoadon", element: <QuanLyHoaDon /> },
       { path: "themhoadon", element: <ThemHoaDon /> },
       { path: "thongke", element: <ThongKe /> },
+      { path: "quanlynhaphang", element: <QuanLyNhapHang /> },
+      { path: "themphieunhaphang", element: <ThemPhieuNhapHang /> },
+      { path: "quanlykhuyenmai", element: <QuanLyKhuyenMai /> },
+      { path: "themkhuyenmai", element: <ThemKhuyenMai /> },
+
       {
         path: "*",
         element: <div>404 Not Found</div>,

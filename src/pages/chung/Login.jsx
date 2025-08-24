@@ -12,6 +12,7 @@ const Login = () => {
     if (dn.status === 200) {
       localStorage.setItem("accessToken", dn.data.data.accessToken);
       localStorage.setItem("refreshToken", dn.data.data.refreshToken);
+      localStorage.setItem("ChucVu", dn.data.data.ThongTin.ChucVu);
       if (dn.data.data.ThongTin.ChucVu == "Quản lý") {
         navigate("/quanly");
       } else {
