@@ -13,12 +13,10 @@ const Quanlynhanvien = () => {
   const [hienthigiaodiensua, setHienthigiaodiensua] = useState(false);
   const [idsua, setidsua] = useState("");
 
-  // Hàm để lấy danh sách nhân viên từ API
-  const fetchDsNhanVien = async () => {
+  const layDsNhanVien = async () => {
     try {
       const response = await laydanhsachnhanvien();
       setDsnhanvien(response.data.data.danhsach);
-      console.log(response.data);
     } catch (error) {
       toast.error(
         error.response.data.message || "Lấy danh sách nhân viên thất bại"
@@ -29,20 +27,17 @@ const Quanlynhanvien = () => {
     try {
       await mohoackhoatk(id);
       toast.success("Mở khoá tài khoản thành công");
-      fetchDsNhanVien(); // Cập nhật lại danh sách nhân viên
+      layDsNhanVien();
     } catch (error) {
       toast.error("Mở khoá tài khoản thất bại: " + error.message);
     }
   };
-
-  // useEffect để lấy dữ liệu lần đầu khi component được mount
   useEffect(() => {
-    fetchDsNhanVien();
+    layDsNhanVien();
   }, []);
 
   return (
     <div className="container bg-white shadow-sm px-36 h-screen pt-2">
-      {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-gray-700">
           Quản lý nhân viên
@@ -84,7 +79,12 @@ const Quanlynhanvien = () => {
 
       {hienthigiaodienthem && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
-          <Themnhanvien onClose={() => setHienthigiaodienthem(false)} />
+          <Themnhanvien
+            onClose={() => {
+              setHienthigiaodienthem(false);
+              layDsNhanVien();
+            }}
+          />
         </div>
       )}
 
@@ -93,7 +93,7 @@ const Quanlynhanvien = () => {
           <Suanhanvien
             MaNhanVien={idsua}
             onClose={() => setHienthigiaodiensua(false)}
-            onUpdate={fetchDsNhanVien}
+            onUpdate={layDsNhanVien}
           />
         </div>
       )}
@@ -102,7 +102,7 @@ const Quanlynhanvien = () => {
           <DoimatkhauNhanVien
             MaNhanVien={idsua}
             onClose={() => setHienthigiaodiendoimk(false)}
-            onUpdate={fetchDsNhanVien}
+            onUpdate={layDsNhanVien}
           />
         </div>
       )}

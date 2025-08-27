@@ -20,7 +20,7 @@ const SuaNhanVien = ({ MaNhanVien, onClose, onUpdate }) => {
   });
 
   useEffect(() => {
-    const fetchChucVu = async () => {
+    const layChucVu = async () => {
       try {
         const response = await laychucvu();
         setChucvu(response.data.data);
@@ -29,34 +29,32 @@ const SuaNhanVien = ({ MaNhanVien, onClose, onUpdate }) => {
       }
     };
 
-    const fetchEmployeeData = async () => {
+    const layThongTinNV = async () => {
       if (MaNhanVien) {
         try {
           const response = await laythongtinnhanvien(MaNhanVien);
-          const employeeData = response.data.data;
-
-          console.log("Dữ liệu nhân viên:", employeeData);
+          const data = response.data.data;
           setDulieu({
-            HoTen: employeeData.MaNhanSu.HoTen,
-            SDT: employeeData.MaNhanSu.SDT,
-            Email: employeeData.MaNhanSu.Email,
-            NgaySinh: employeeData.MaNhanSu.NgaySinh
-              ? employeeData.MaNhanSu.NgaySinh.split("T")[0]
+            HoTen: data.MaNhanSu.HoTen,
+            SDT: data.MaNhanSu.SDT,
+            Email: data.MaNhanSu.Email,
+            NgaySinh: data.MaNhanSu.NgaySinh
+              ? data.MaNhanSu.NgaySinh.split("T")[0]
               : "",
-            DiaChi: employeeData.MaNhanSu.DiaChi,
-            GioiTinh: employeeData.MaNhanSu.GioiTinh.toString(),
-            MaChucVu: employeeData.MaChucVu._id,
-            MaNhanSu: employeeData.MaNhanSu._id,
+            DiaChi: data.MaNhanSu.DiaChi,
+            GioiTinh: data.MaNhanSu.GioiTinh.toString(),
+            MaChucVu: data.MaChucVu._id,
+            MaNhanSu: data.MaNhanSu._id,
           });
         } catch (error) {
-          toast.error("Lấy thông tin nhân viên thất bại: " + error.message);
+          toast.error(error.response.data.message);
           console.error("Lỗi khi lấy dữ liệu nhân viên: ", error);
         }
       }
     };
 
-    fetchChucVu();
-    fetchEmployeeData();
+    layChucVu();
+    layThongTinNV();
   }, [MaNhanVien]);
 
   const handleChange = (e) => {

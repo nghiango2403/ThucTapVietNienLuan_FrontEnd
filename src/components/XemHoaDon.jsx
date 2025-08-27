@@ -14,7 +14,6 @@ const XemHoaDon = ({ hoadon, dong }) => {
     const layChiTietHoaDon = async () => {
       try {
         const response = await laychitiethoadon(hoadon._id);
-        console.log(hoadon);
         if (hoadon.HinhThucThanhToan != "Trực tiếp") {
           const a = await kiemtratrangthaithanhtoan(hoadon._id);
           settrangthaithanhtoan(a.data.data);
@@ -112,7 +111,7 @@ const XemHoaDon = ({ hoadon, dong }) => {
           <div className="mt-4 text-lg font-bold text-green-600">
             Trạng thái thanh toán:{" "}
             <span className="text-red-600">{trangthaithanhtoan}</span>
-            {trangthaithanhtoan == "Thất bại" && (
+            {trangthaithanhtoan != "Thành công" && (
               <button
                 onClick={taoLaiThanhToan}
                 className="px-6 py-2 rounded-xl border ml-4 border-gray-300 bg-green-400 text-white hover:bg-green-500"

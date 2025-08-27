@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <nav className="bg-gray-900 text-white py-4 shadow-md flex justify-between items-center px-36">
       <Link to="/" className="text-xl font-bold hover:text-yellow-400">
@@ -57,13 +57,17 @@ export default function Navbar() {
               Đổi mật khẩu
             </Link>
 
-            <Link
-              to="/dangnhap"
+            <button
               className="block px-4 py-2 hover:bg-gray-200"
-              onClick={() => setDropdownOpen(false)}
+              onClick={() => {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("ChucVu");
+                navigate("/dangnhap");
+              }}
             >
-              Register
-            </Link>
+              Đăng xuất
+            </button>
           </div>
         )}
       </div>

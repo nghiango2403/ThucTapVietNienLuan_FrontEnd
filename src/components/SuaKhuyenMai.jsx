@@ -33,7 +33,7 @@ const SuaKhuyenMai = ({ khuyenmai, dong }) => {
       setDangGui(false);
     } catch (error) {
       setDangGui(false);
-      toast.error("Sửa khuyến mãi thất bại");
+      toast.error(error.response.data.message);
       console.log(error);
     }
   };

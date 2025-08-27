@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { laymakhuyenmaiconhoatdong, themhoadon } from "../../services/Service";
 import TimHangHoa from "../../components/TimHangHoa";
+import { useNavigate } from "react-router-dom";
 
 const ThemHoaDon = () => {
+  const navigate = useNavigate();
   const [maKhuyenMai, setMaKhuyenMai] = useState("");
   const [hienthem, setHienthem] = useState(false);
   const [hinhThucThanhToan, setHinhThucThanhToan] = useState("Trực tiếp");
@@ -21,7 +23,7 @@ const ThemHoaDon = () => {
           toast.error(response.data.message);
         }
       } catch (e) {
-        toast.error("Lấy khuyến mãi thất bại: ");
+        toast.error(e.response.data.message);
         console.log(e);
       }
     };
@@ -73,7 +75,6 @@ const ThemHoaDon = () => {
         })),
       };
     }
-    console.log("Hóa đơn gửi đi:", data);
     try {
       setDanggui(true);
       const response = await themhoadon(data);
@@ -82,6 +83,7 @@ const ThemHoaDon = () => {
       if (response.data.status == 201) {
         window.open(response.data.data.url);
       }
+      navigate("/quanly/quanlyhoadon");
     } catch (error) {
       setDanggui(false);
       toast.error("Thêm hóa đơn thất bại: ");

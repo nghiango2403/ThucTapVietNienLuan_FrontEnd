@@ -8,8 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const handleSubmit = async () => {
-    const dn = await dangnhap(tendangnhap, password);
-    if (dn.status === 200) {
+    try {
+      const dn = await dangnhap(tendangnhap, password);
       localStorage.setItem("accessToken", dn.data.data.accessToken);
       localStorage.setItem("refreshToken", dn.data.data.refreshToken);
       localStorage.setItem("ChucVu", dn.data.data.ThongTin.ChucVu);
@@ -18,11 +18,9 @@ const Login = () => {
       } else {
         navigate("/nhanvien");
       }
-      toast.success("Đăng nhập thành công");
-    } else {
-      toast.error(dn.data.message || "Đăng nhập thất bại");
+    } catch (error) {
+      toast.error(error.response.data.message || "Đăng nhập thất bại");
     }
-    console.log("Đăng nhập:", dn);
   };
 
   return (
