@@ -164,12 +164,12 @@ const QuanLyHoaDon = () => {
                     >
                       Xem
                     </button>
-                    <button
-                      className="text-red-600 hover:underline"
-                      onClick={() => xoaHoaDon(hd._id)}
-                    >
-                      Xoá
-                    </button>
+                    {!location.pathname === "/nhanvien" && (
+                      <button
+                        className="text-red-600 hover:underline"
+                        onClick={() => xoaHoaDon(hd._id)}
+                      ></button>
+                    )}
                   </td>
                 </tr>
               ))

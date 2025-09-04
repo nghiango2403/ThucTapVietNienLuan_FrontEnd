@@ -9,7 +9,7 @@ const ChuyenHuong = () => {
     else if (ChucVu === "Quản lý") navigate("/quanly");
     else navigate("/nhanvien");
   }, []);
-  return <div>ChuyenHuong</div>;
+  return <div></div>;
 };
 
 export default ChuyenHuong;
